@@ -1,0 +1,10 @@
+body {
+    background-color:  antiquewhite;
+    display: flex-box;
+};
+h1 {
+    margin-left: auto;
+    margin-right: auto;
+    padding: auto;
+    align-items: center;
+}
