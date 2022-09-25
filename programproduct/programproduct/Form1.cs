@@ -73,7 +73,7 @@ namespace programproduct
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox1.Text = textBox2.Text = null;
+            textBox1.Text = textBox2.Text=textBox3.Text = null;
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
