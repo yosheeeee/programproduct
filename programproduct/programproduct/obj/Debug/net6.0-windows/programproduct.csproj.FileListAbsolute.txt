@@ -16,3 +16,4 @@ D:\hse rep\programproduct\programproduct\programproduct\obj\Debug\net6.0-windows
 D:\hse rep\programproduct\programproduct\programproduct\obj\Debug\net6.0-windows\ref\programproduct.dll
 D:\hse rep\programproduct\programproduct\programproduct\obj\Debug\net6.0-windows\programproduct.Programproduct.resources
 D:\hse rep\programproduct\programproduct\programproduct\obj\Debug\net6.0-windows\programproduct.Properties.Resources.resources
+D:\hse rep\programproduct\programproduct\programproduct\obj\Debug\net6.0-windows\programproduct.Form2.resources
