@@ -42,7 +42,28 @@ namespace programproduct
             {
                 MessageBox.Show("Ведите значение для подсчета");
             }
-
+            bool chek = double.TryParse(input, out schet);
+            if (chek)
+            {
+                schet = Math.Sqrt(schet);
+            }
+            strtochn = textBox3.Text;
+            if (!String.IsNullOrEmpty(strtochn))
+            {
+                chek = int.TryParse(strtochn, out tochn);
+                if (!chek)
+                {
+                    MessageBox.Show("Введите целое положительное значение");
+                }else if(tochn<0)
+                {
+                    MessageBox.Show("Введите целое положительное значение");
+                }
+                else
+                {
+                    schet=Math.Round(schet,tochn);
+                }
+            }
+            textBox1.Text=Convert.ToString(schet);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -109,6 +130,11 @@ namespace programproduct
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -123,6 +123,7 @@
             resources.ApplyResources(this.textBox3, "textBox3");
             this.textBox3.HideSelection = false;
             this.textBox3.Name = "textBox3";
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // pictureBox2
             // 
