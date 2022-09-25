@@ -37,7 +37,8 @@ namespace programproduct
 
         private void button1_Click(object sender, EventArgs e)
         {
-            input = textBox2.Text;           
+            input = textBox2.Text;
+            bool znak=true;
             if (String.IsNullOrEmpty(input))
             {
                 MessageBox.Show("Ведите значение для подсчета");
@@ -45,25 +46,44 @@ namespace programproduct
             bool chek = double.TryParse(input, out schet);
             if (chek)
             {
-                schet = Math.Sqrt(schet);
-            }
+                znak = schet >= 0;
+                schet=Math.Sqrt(Math.Abs(schet));
+            }/*else
+            {
+
+
+
+
+
+
+
+            }*/
             strtochn = textBox3.Text;
             if (!String.IsNullOrEmpty(strtochn))
             {
                 chek = int.TryParse(strtochn, out tochn);
-                if (!chek)
+                if (!chek || tochn>15)
                 {
-                    MessageBox.Show("Введите целое положительное значение");
+                    MessageBox.Show("Введите целое положительное значение (не более 15)");
                 }else if(tochn<0)
                 {
-                    MessageBox.Show("Введите целое положительное значение");
+                    MessageBox.Show("Введите целое положительное значение (не более 15)");
                 }
                 else
                 {
                     schet=Math.Round(schet,tochn);
                 }
             }
-            textBox1.Text=Convert.ToString(schet);
+            if (znak)
+            {
+                output = Convert.ToString(schet);
+            }
+            else
+            {
+                output = "±"+Convert.ToString(schet)+"i";
+            }
+
+            textBox1.Text = output;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
