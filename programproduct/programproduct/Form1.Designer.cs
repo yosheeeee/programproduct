@@ -59,7 +59,6 @@
             resources.ApplyResources(this.textBox2, "textBox2");
             this.textBox2.HideSelection = false;
             this.textBox2.Name = "textBox2";
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label1
             // 

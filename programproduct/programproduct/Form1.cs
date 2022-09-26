@@ -5,7 +5,7 @@ namespace programproduct
     {   
         string input;
         string output;
-        double schet;
+        decimal schet;
         string strtochn;
         int tochn;
         public Programproduct()
@@ -39,6 +39,7 @@ namespace programproduct
         {
             input = textBox2.Text;
             bool znak=true;
+            double chislo,schet;
             if (String.IsNullOrEmpty(input))
             {
                 MessageBox.Show("Ведите значение для подсчета");
@@ -47,49 +48,45 @@ namespace programproduct
             if (chek)
             {
                 znak = schet >= 0;
-                schet=Math.Sqrt(Math.Abs(schet));
-            }/*else
-            {
-
-
-
-
-
-
-
-            }*/
-            strtochn = textBox3.Text;
-            if (!String.IsNullOrEmpty(strtochn))
-            {
-                chek = int.TryParse(strtochn, out tochn);
-                if (!chek || tochn>15)
+                if (String.IsNullOrEmpty(strtochn))
                 {
-                    MessageBox.Show("Введите целое положительное значение (не более 15)");
-                }else if(tochn<0)
-                {
-                    MessageBox.Show("Введите целое положительное значение (не более 15)");
+                    schet = Math.Sqrt(Math.Abs(schet));
+                    strtochn = textBox3.Text;
+                    if (!String.IsNullOrEmpty(strtochn))
+                    {
+                        chek = int.TryParse(strtochn, out tochn);
+                        if (!chek || tochn > 15)
+                        {
+                            MessageBox.Show("Введите целое положительное значение (не более 15)");
+                        }
+                        else if (tochn < 0)
+                        {
+                            MessageBox.Show("Введите целое положительное значение (не более 15)");
+                        }
+                        else
+                        {
+                            schet = Math.Round(schet, tochn);
+                        }
+                    }
+                    if (znak)
+                    {
+                        output = Convert.ToString(schet);
+                    }
+                    else
+                    {
+                        output = Convert.ToString(schet) + "i";
+                    }
+                    output = "±" + output;
+                    textBox1.Text = output;
                 }
-                else
-                {
-                    schet=Math.Round(schet,tochn);
-                }
-            }
-            if (znak)
-            {
-                output = Convert.ToString(schet);
-            }
-            else
-            {
-                output = "±"+Convert.ToString(schet)+"i";
-            }
 
-            textBox1.Text = output;
+            }else{
+                MessageBox.Show("Введенные данные некорректны");
+            }
+            
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
