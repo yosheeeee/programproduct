@@ -120,7 +120,7 @@ namespace programproduct
                         textBox2.PlaceholderText = "value";
                         textBox3.PlaceholderText = "result";
                         label4.Text = "character precision";
-                        textBox3.PlaceholderText = "value";
+                        textBox1.PlaceholderText = "value";
                         button2.Text = "clear";
                         button1.Text = "calculate";
                         break;
@@ -130,7 +130,7 @@ namespace programproduct
                         textBox2.PlaceholderText = "évaluer";
                         textBox3.PlaceholderText = "résultat";
                         label4.Text = "précision des caractères";
-                        textBox3.PlaceholderText = "évaluer";
+                        textBox1.PlaceholderText = "évaluer";
                         button2.Text = "dégager";
                         button1.Text = "calculer";
                         break;
@@ -140,7 +140,7 @@ namespace programproduct
                         textBox2.PlaceholderText = "значение";
                         textBox3.PlaceholderText = "ответ";
                         label4.Text = "точность знаков";
-                        textBox3.PlaceholderText = "значение";
+                        textBox1.PlaceholderText = "значение";
                         button2.Text = "очистить";
                         button1.Text = "посчитать";
                         break;
