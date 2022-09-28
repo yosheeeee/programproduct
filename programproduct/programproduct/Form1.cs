@@ -48,25 +48,22 @@ namespace programproduct
             if (chek)
             {
                 znak = schet >= 0;
-                if (String.IsNullOrEmpty(strtochn))
+                schet = Math.Sqrt(Math.Abs(schet));
+                strtochn = textBox3.Text;
+                if (!String.IsNullOrEmpty(strtochn))
                 {
-                    schet = Math.Sqrt(Math.Abs(schet));
-                    strtochn = textBox3.Text;
-                    if (!String.IsNullOrEmpty(strtochn))
+                    chek = int.TryParse(strtochn, out tochn);
+                    if (!chek || tochn > 15)
                     {
-                        chek = int.TryParse(strtochn, out tochn);
-                        if (!chek || tochn > 15)
-                        {
-                            MessageBox.Show("Введите целое положительное значение (не более 15)");
-                        }
-                        else if (tochn < 0)
-                        {
-                            MessageBox.Show("Введите целое положительное значение (не более 15)");
-                        }
-                        else
-                        {
-                            schet = Math.Round(schet, tochn);
-                        }
+                        MessageBox.Show("Введите целое положительное значение (не более 15)");
+                    }
+                    else if (tochn < 0)
+                    {
+                        MessageBox.Show("Введите целое положительное значение (не более 15)");
+                    }
+                    else
+                    {
+                        schet = Math.Round(schet, tochn);
                     }
                     if (znak)
                     {
@@ -79,8 +76,18 @@ namespace programproduct
                     output = "±" + output;
                     textBox1.Text = output;
                 }
-
-            }else{
+                if (znak)
+                {
+                    output = Convert.ToString(schet);
+                }
+                else
+                {
+                    output = Convert.ToString(schet) + "i";
+                }
+                output = "±" + output;
+                textBox1.Text = output;
+            }
+            else{
                 MessageBox.Show("Введенные данные некорректны");
             }
             
@@ -90,7 +97,7 @@ namespace programproduct
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox1.Text = textBox2.Text=textBox3.Text = null;
+            textBox1.Text = textBox2.Text=textBox3.Text ="";
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
