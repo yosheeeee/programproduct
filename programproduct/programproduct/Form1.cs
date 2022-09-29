@@ -1,4 +1,10 @@
 ﻿
+using System.Drawing.Text;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
+using System.Windows.Input;
+
+
 namespace programproduct
 {
     public partial class Programproduct : Form
@@ -6,12 +12,17 @@ namespace programproduct
         string input;
         string output;
         decimal schet;
-        string strtochn;
+        string strtochn,errortochn, error, errorempty;
         int tochn;
         public Programproduct()
         {
             InitializeComponent();
-
+            errorempty = "Ведите значение для подсчета";
+            error = "Введенные данные некорректны";
+            errortochn = "Введите целое положительное значение (не более 15)";
+            textBox1.KeyDown += Grid_KeyDown;
+            textBox1.KeyUp += Grid_KeyDown;
+            this.ActiveControl = button1;
 
         }
 
@@ -35,35 +46,48 @@ namespace programproduct
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             input = textBox2.Text;
-            bool znak=true;
+            bool znak;
             double chislo,schet;
             if (String.IsNullOrEmpty(input))
             {
-                MessageBox.Show("Ведите значение для подсчета");
+                MessageBox.Show(errorempty);
             }
-            bool chek = double.TryParse(input, out schet);
-            if (chek)
+            else
             {
-                znak = schet >= 0;
-                schet = Math.Sqrt(Math.Abs(schet));
-                strtochn = textBox3.Text;
-                if (!String.IsNullOrEmpty(strtochn))
+                bool chek = double.TryParse(input, out schet);
+                if (chek)
                 {
-                    chek = int.TryParse(strtochn, out tochn);
-                    if (!chek || tochn > 15)
+                    znak = schet >= 0;
+                    schet = Math.Sqrt(Math.Abs(schet));
+                    strtochn = textBox3.Text;
+                    if (!String.IsNullOrEmpty(strtochn))
                     {
-                        MessageBox.Show("Введите целое положительное значение (не более 15)");
-                    }
-                    else if (tochn < 0)
-                    {
-                        MessageBox.Show("Введите целое положительное значение (не более 15)");
-                    }
-                    else
-                    {
-                        schet = Math.Round(schet, tochn);
+                        chek = int.TryParse(strtochn, out tochn);
+                        if (!chek || tochn > 15)
+                        {
+                            MessageBox.Show(errortochn);
+                        }
+                        else if (tochn < 0)
+                        {
+                            MessageBox.Show(errortochn);
+                        }
+                        else
+                        {
+                            schet = Math.Round(schet, tochn);
+                        }
+                        if (znak)
+                        {
+                            output = Convert.ToString(schet);
+                        }
+                        else
+                        {
+                            output = Convert.ToString(schet) + "i";
+                        }
+                        output = "±" + output;
+                        textBox1.Text = output;
                     }
                     if (znak)
                     {
@@ -76,23 +100,20 @@ namespace programproduct
                     output = "±" + output;
                     textBox1.Text = output;
                 }
-                if (znak)
-                {
-                    output = Convert.ToString(schet);
-                }
                 else
                 {
-                    output = Convert.ToString(schet) + "i";
+                    MessageBox.Show(error);
                 }
-                output = "±" + output;
-                textBox1.Text = output;
-            }
-            else{
-                MessageBox.Show("Введенные данные некорректны");
             }
             
         }
-
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
+        }
 
 
         private void button2_Click(object sender, EventArgs e)
@@ -109,6 +130,7 @@ namespace programproduct
         {
 
         }
+
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -127,6 +149,9 @@ namespace programproduct
                         textBox1.PlaceholderText = "value";
                         button2.Text = "clear";
                         button1.Text = "calculate";
+                        error = "Entered data is incorrect";
+                        errortochn = "Enter a positive integer value (maximum 15)";
+                        errorempty = "Enter value to count";
                         break;
                     case "fr":
                         label6.Text = "fr";
@@ -137,6 +162,9 @@ namespace programproduct
                         textBox1.PlaceholderText = "évaluer";
                         button2.Text = "dégager";
                         button1.Text = "calculer";
+                        error = "Les données saisies sont incorrectes";
+                        errortochn = "Entrez une valeur entière positive (maximum 15)";
+                        errorempty = "Entrez la valeur à compter";
                         break;
                     case "ru":
                         label6.Text = "ru";
@@ -147,6 +175,9 @@ namespace programproduct
                         textBox1.PlaceholderText = "значение";
                         button2.Text = "очистить";
                         button1.Text = "посчитать";
+                        error = "Введенные данные некорректны";
+                        errortochn = "Введите целое положительное значение (не более 15)";
+                        errorempty = "Ведите значение для подсчета";
                         break;
 
                 }
